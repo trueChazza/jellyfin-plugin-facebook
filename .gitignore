@@ -1,0 +1,6 @@
+.dotnet/
+.local/
+.nuget/
+.vscode/
+dist/
+obj/

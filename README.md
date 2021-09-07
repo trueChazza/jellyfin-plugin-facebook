@@ -1,1 +1,1 @@
-# jellyfin-plugin-facebook
+jellyfin-plugin-facebook
