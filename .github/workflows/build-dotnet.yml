@@ -22,10 +22,10 @@ jobs:
           dotnet-version: 5.0.x
 
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore Jellyfin.Plugin.Facebook
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build Jellyfin.Plugin.Facebook --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test --no-restore --verbosity normal
+        run: dotnet test Jellyfin.Plugin.Facebook --no-restore --verbosity normal
