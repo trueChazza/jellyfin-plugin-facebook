@@ -16,7 +16,7 @@ namespace Jellyfin.Plugin.Facebook
             Instance = this;
         }
 
-        public override string Name => "Facebook Notifications";
+        public override string Name => "Facebook";
 
         public IEnumerable<PluginPageInfo> GetPages() =>
             new[]

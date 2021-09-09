@@ -2,7 +2,7 @@ version: '2'
 
 services:
   dotnet-sdk:
-    image: docker.io/bitnami/dotnet-sdk:5.0.400
+    image: docker.io/bitnami/dotnet-sdk:5
     command: ["tail", "-f", "/dev/null"] # To keep the container running
     volumes:
       - ./:/app
