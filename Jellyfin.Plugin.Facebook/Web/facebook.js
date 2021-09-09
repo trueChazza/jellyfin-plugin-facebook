@@ -20,8 +20,11 @@ export default function (view) {
                 type: 'POST',
                 url: ApiClient.getUrl('Notification/Facebook/Test')
             }).then(() => {
+
                 Dashboard.hideLoadingMsg();
+                Dashboard.alert('Test sent.');
             }, () => {
+
                 Dashboard.alert('Error sending test notification.');
                 Dashboard.hideLoadingMsg();
             });
