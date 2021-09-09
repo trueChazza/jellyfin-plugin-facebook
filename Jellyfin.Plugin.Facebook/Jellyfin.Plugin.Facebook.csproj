@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Web\facebooknotifications.html" />
-    <None Remove="Web\facebooknotifications.js" />
-    <EmbeddedResource Include="Web\facebooknotifications.html" />
-    <EmbeddedResource Include="Web\facebooknotifications.js" />
+    <None Remove="Web\facebook.html" />
+    <None Remove="Web\facebook.js" />
+    <EmbeddedResource Include="Web\facebook.html" />
+    <EmbeddedResource Include="Web\facebook.js" />
   </ItemGroup>
 
   <ItemGroup>

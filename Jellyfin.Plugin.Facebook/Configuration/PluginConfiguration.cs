@@ -4,11 +4,8 @@ namespace Jellyfin.Plugin.Facebook.Configuration
 {
     public class PluginConfiguration : BasePluginConfiguration
     {
-        public FacebookConfiguration[] Options { get; set; }
-
-        public PluginConfiguration()
-        {
-            Options = new FacebookConfiguration[] { };
-        }
+        public bool IsEnabled { get; set; }
+        public string GroupId { get; set; }
+        public string AccessToken { get; set; }
     }
 }

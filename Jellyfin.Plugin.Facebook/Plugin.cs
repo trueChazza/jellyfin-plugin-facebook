@@ -10,8 +10,7 @@ namespace Jellyfin.Plugin.Facebook
 {
     public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
-        public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer)
-            : base(applicationPaths, xmlSerializer)
+        public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer): base(applicationPaths, xmlSerializer)
         {
             Instance = this;
         }
@@ -23,17 +22,17 @@ namespace Jellyfin.Plugin.Facebook
             {
                 new PluginPageInfo
                 {
-                    Name = "facebooknotifications",
-                    EmbeddedResourcePath = GetType().Namespace + ".Web.facebooknotifications.html",
+                    Name = "facebook",
+                    EmbeddedResourcePath = GetType().Namespace + ".Web.facebook.html",
                 },
                 new PluginPageInfo
                 {
-                    Name = "facebooknotificationsjs",
-                    EmbeddedResourcePath = GetType().Namespace + ".Web.facebooknotifications.js"
+                    Name = "facebookjs",
+                    EmbeddedResourcePath = GetType().Namespace + ".Web.facebook.js"
                 }
             };
 
-        public override string Description => "Sends notifications to Facebook.";
+        public override string Description => "Send notifications to Facebook.";
 
         private readonly Guid _id = new Guid("0df52034-4b59-443f-ac40-1d3f5107e2da");
         public override Guid Id => _id;

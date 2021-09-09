@@ -1,0 +1,44 @@
+<div id="FacebookConfigurationPage" data-role="page" class="page type-interior pluginConfigurationPage" data-controller="__plugin/facebookjs">
+    <div data-role="content">
+        <div class="content-primary">
+
+            <p>Test plugin for sending Facebook notifications to a group page.</p>
+            
+            <div class="FacebookConfigurationForm">
+
+                <label class="checkboxContainer">
+                    <input id="enable" is="emby-checkbox" type="checkbox" />
+                    <span>Enabled</span>
+                </label>
+
+                <div class="inputContainer">
+                    <input id="groupId" is="emby-input" type="text" required="required" label="Group ID:"/>
+                    <div class="fieldDescription">
+                        Group ID
+                    </div>
+                </div>
+
+                <div class="inputContainer">
+                    <input id="accessToken" is="emby-input" type="text" label="Access Token:"/>
+                    <div class="fieldDescription">
+                        Access Token
+                    </div>
+                </div>
+
+                <div>
+                    <button id="test" is="emby-button" type="button" class="raised button-cancel block">
+                        <span>Send Test Notification</span>
+                    </button>
+                </div>
+
+                <br/>
+                
+                <div>
+                    <button id="save" is="emby-button" type="button" class="raised button-submit block">
+                        <span>Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

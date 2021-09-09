@@ -30,45 +30,28 @@ namespace Jellyfin.Plugin.Facebook
 
         public bool IsEnabledForUser(User user)
         {
-            var options = GetOptions(user);
-            return options != null && IsValid(options) && options.IsEnabled;
-        }
-
-        private FacebookConfiguration GetOptions(User user)
-        {
-            return Plugin.Instance.Configuration.Options
-                .FirstOrDefault(i => string.Equals(i.JellyfinUserId, user.Id.ToString("N"), StringComparison.OrdinalIgnoreCase));
+            return Plugin.Instance.Configuration.IsEnabled;
         }
 
         public string Name => Plugin.Instance.Name;
 
         public async Task SendNotification(UserNotification request, CancellationToken cancellationToken)
         {
-            var options = GetOptions(request.User);
-
             var parameters = new Dictionary<string, string>
                 {
-                    {"text", $"{request.Name} \n {request.Description}"},
+                    {
+                        "message", $"{request.Name} \n {request.Description}"
+                    },
+                    {
+                        "link", $"{request.Url}"
+                    },
                 };
-            if (!string.IsNullOrEmpty(options.Username))
-            {
-                parameters.Add("username", options.Username);
-            }
-            if (!string.IsNullOrEmpty(options.IconUrl))
-            {
-                parameters.Add("icon_url", options.IconUrl);
-            }
 
-            _logger.LogDebug("Notification to Facebook : {0} - {1}", options.WebHookUrl, request.Description);
+            _logger.LogDebug("Notification to Facebook : {0} - {1}", Plugin.Instance.Configuration.GroupId, request.Description);
 
             using var response = await _httpClientFactory.CreateClient(NamedClient.Default)
-                .PostAsJsonAsync(options.WebHookUrl, parameters, _jsonSerializerOptions, cancellationToken)
+                .PostAsJsonAsync($"https://graph.facebook.com/v11.0/{ Plugin.Instance.Configuration.GroupId }/feed", parameters, _jsonSerializerOptions, cancellationToken)
                 .ConfigureAwait(false);
-        }
-
-        private bool IsValid(FacebookConfiguration options)
-        {
-            return !string.IsNullOrEmpty(options.WebHookUrl);
         }
     }
 }
