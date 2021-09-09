@@ -1,1 +1,1 @@
-jellyfin-plugin-facebook
+Jellyfin Facebook Plugin
