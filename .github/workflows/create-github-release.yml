@@ -1,19 +1,41 @@
-name: Publish Drafted GitHub Release
+name: Release
 
 on:
   push:
     tags: [ 'v*' ]
 
 jobs:
-  publish_release_draft:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Get version from GITHUB_REF
         id: get-version
         run: echo "::set-output name=version::${GITHUB_REF/refs\/tags\//}"
 
-      - name: Publish release on GitHub
-        uses: test-room-7/action-publish-release-drafts@v0
+      - uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          tag-name: ${{ steps.get-version.outputs.version }}
+          dotnet-version: 5.0.x
+
+      - name: Install dependencies
+        run: dotnet restore Jellyfin.Plugin.Facebook
+
+      - name: Build
+        run: dotnet build Jellyfin.Plugin.Facebook --configuration Release --output dist --no-restore
+
+      - name: Zip
+        uses: thedoctor0/zip-release@master
+        with:
+          type: 'zip'
+          directory: 'dist'
+          filename: 'release.zip'
+          exclusions: '*.json* *.pdb* /*node_modules/*'
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            release.zip

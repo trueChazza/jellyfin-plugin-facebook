@@ -1,14 +1,14 @@
 ---
 name: "Facebook"
 guid: "0df52034-4b59-443f-ac40-1d3f5107e2da"
-version: "1.0.0.0"
+version: "2.0.0.0"
 targetAbi: "10.7.7.0"
 framework: "net5.0"
-overview: "Get notifications via Facebook"
+overview: "Send notifications to Facebook"
 description: >
-  Get notifications via Facebook.
+  Send notifications to Facebook
 category: "Notifications"
-owner: "jellyfin"
+owner: "cgnetwork"
 artifacts:
 - "Jellyfin.Plugin.Facebook.dll"
 changelog: >
