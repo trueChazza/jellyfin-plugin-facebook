@@ -1,4 +1,5 @@
 version: 2
+
 updates:
   # Fetch and update latest `nuget` pkgs
   - package-ecosystem: nuget

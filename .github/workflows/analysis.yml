@@ -1,12 +1,12 @@
-name: Run CodeQL
+name: Analysis
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths-ignore:
       - '**/*.md'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths-ignore:
       - '**/*.md'
   schedule:

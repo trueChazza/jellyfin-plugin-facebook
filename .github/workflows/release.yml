@@ -40,5 +40,5 @@ jobs:
           files: |
             dist/release.zip
 
-      - name: SHASUM
-        run: shasum dist/release.zip
+      - name: MD5
+        run: md5 dist/release.zip
