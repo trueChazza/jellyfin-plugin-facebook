@@ -37,21 +37,16 @@ namespace Jellyfin.Plugin.Facebook
 
         public async Task SendNotification(UserNotification request, CancellationToken cancellationToken)
         {
-            var parameters = new Dictionary<string, string>
-                {
-                    {
-                        "message", $"{request.Name} \n {request.Description}"
-                    },
-                    {
-                        "link", $"{request.Url}"
-                    },
-                };
-
-            _logger.LogDebug("Notification to Facebook : {0} - {1}", Plugin.Instance.Configuration.GroupId, request.Description);
+            var parameters = new Dictionary<string, string> {};
+                
+            parameters.Add("message", $"{request.Name}\n\n{request.Description}");
+            parameters.Add("link", $"{request.Url}");
 
             using var response = await _httpClientFactory.CreateClient(NamedClient.Default)
-                .PostAsJsonAsync($"https://graph.facebook.com/v11.0/{ Plugin.Instance.Configuration.GroupId }/feed", parameters, _jsonSerializerOptions, cancellationToken)
+                .PostAsJsonAsync($"https://graph.facebook.com/v11.0/{ Plugin.Instance.Configuration.GroupId }/feed?access_token={ Plugin.Instance.Configuration.AccessToken }", parameters, _jsonSerializerOptions, cancellationToken)
                 .ConfigureAwait(false);
+
+            _logger.LogInformation($"Facebook notification sent to Group { Plugin.Instance.Configuration.GroupId }");
         }
     }
 }

@@ -39,3 +39,4 @@ jobs:
           prerelease: false
           files: |
             dist/release.zip
+        run: shasum dist/release.zip
