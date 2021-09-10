@@ -31,7 +31,7 @@ jobs:
           type: 'zip'
           directory: 'dist'
           filename: 'release.zip'
-          exclusions: '*.json* *.pdb* /*node_modules/*'
+          exclusions: '*.json* *.pdb* /*ref/*'
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
